@@ -379,7 +379,8 @@ public:
 		TDynamicMatrix tmp(sz);
 		for (size_t i = 0; i < tmp.sz; i++) {
 			for (size_t j = 0; j < tmp.sz; j++) {
-				tmp.pMem[i][j] = std::pow(-1, i + j) * calcDeterminant(getMinor(i, j));
+				auto minor = getMinor(i, j);
+				tmp.pMem[i][j] = std::pow(-1, i + j) * calcDeterminant(minor);
 			}
 		}
 
@@ -418,13 +419,17 @@ private:
 		else {
 			T det = T();
 			for (size_t k = 0; k < m.sz; k++) {
-				det = det + std::pow(-1, k) * m.pMem[0][k] * calcDeterminant(m.getMinor(0, k));
+				auto minor = m.getMinor(0, k);
+				det = det + std::pow(-1, k) * m.pMem[0][k] * calcDeterminant(minor);
 			}
 			return det;
 		}
 	}
 
 	TDynamicMatrix getMinor(size_t i, size_t j) {
+		if (sz == 1)
+			return *this;
+
 		TDynamicMatrix minor(sz - 1);
 
 		for (size_t i1 = 0, i2 = 0; i1 < sz && i2 < minor.sz; i1++) {
