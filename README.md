@@ -1,6 +1,6 @@
 # Методы программирования 2: Матрицы на шаблонах
 
-[![Build Status](https://travis-ci.org/UNN-VMK-Software/mp2-lab1-set.svg)][travis]
+![](https://tokei.rs/b1/github/ermolaevv/mp2-lab2-matrix)
 
 <!-- TODO
   -
